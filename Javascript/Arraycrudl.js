@@ -16,6 +16,7 @@ var Printall = () => {
     Travelsname.map((getting) =>
     {
         temp += " <tr><td><ul><li>" + getting + "</li></ul></td></tr>";
+       
     })
 
     document.getElementById('list').innerHTML = "<table><thead bgcolor='red'><tr><th>Travels List</th></tr></thead><tbody bgcolor='pink' align='center'>" + temp + "</tbody></table>";
