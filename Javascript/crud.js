@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
-    const loginsection=document.gettElementById("loginsection");
-    const crudsection=document.getElementById("crudSection");
+    const loginSection=document.gettElementById("loginsection");
+    const crudSection=document.getElementById("crudSection");
     const loginForm=document.getElementById("loginForm");
     const logoutBtn=document.getElementById("logoutBtn");
     const studenForm=document.getElementById("studentForm");
@@ -16,13 +16,42 @@ document.addEventListener("DOMContentLoaded",()=>{
     {
         if(sessionStorage.getItem("loggedInuser"))
         {
-            loginsection.style.display="none";
-            crudsection.style.display="block";
-            
+            loginSection.style.display="none";
+            crudSection.style.display="block";
+            loadStudents();
+        }
+        else{
+            loginSection.style.display="none";
+            crudSection.style.display="block";
 
         }
 
     }
+    //LoginForm
+
+    loginForm.addEventListener("submit",()=>{
+        const username=document.getElementById("username").value;
+        const password=document.getElementById("password").value;
+        if(username=="Annamalai" && password=="123")
+        {
+            sessionStorage.setItem("loggedInuser",username);
+            checkLogin();
+        }
+        else
+        {
+            alert("Invalid username")
+        }
+
+    });
+    //logout
+    logoutBtn.addEventListener("click",()=>
+    {
+        sessionStorage.removeItem("loggedInuser");
+        checkLogin();
+    })
+
+
+
 
 
 
