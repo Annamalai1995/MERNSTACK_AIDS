@@ -49,9 +49,49 @@ document.addEventListener("DOMContentLoaded",()=>{
         sessionStorage.removeItem("loggedInuser");
         checkLogin();
     })
+//session storage load student data
+// JSON-JAVSCRIPT OBJECT NOTATION
+    // KEY AND VALUES
+    // "name":"ANnamalai"
+    // JSON.parse=json->javascript object converted
+    // {
+    //     name:valu
+    //     name:balu
+    
+    // }
+    // JSON STRINGFY:
+    // {
+      
+    //     :"name":"ANnamalai"
+    // }
+//for 
+//for in
+//for in range
+//for Each loop
+function loadStudents()
+{
+    studentList.innerHTML="";
+    const students=JSON.parse(sessionStorage.getItem("students"))
+    students.forEach((student,index)=>
+    {
+        const row=document.createElement("tr");
+        row.innerHTML=`
+        <td>${student.name}</td>
+        <td>${student.rollno}</td>
+        <td>${student.department}</td>
+        <td>${student.cgpa}</td>
+        <td>${student.gender}</td> 
+        <td>
+            <button class="btn btn-info" onclick="editSudent(${index})">EDIT</button
+            <button class='btn-btn-danger'onclick="deleteStudent(${index})">DELETE</button>
 
+        </td>
+        `;
+        studentList.appendChild(row);
 
+    })
 
+}
 
 
 
