@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         e.preventDefault();
         const username=document.getElementById("username").value;
         const password=document.getElementById("password").value;
-        if(username=="Annamalai" && password=="123")
+        if(username=="Annamalai" && password==="123")
         {
             sessionStorage.setItem("loggedInuser",username);
             checkLogin();
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     {
         sessionStorage.removeItem("loggedInuser");
         checkLogin();
-    })
+    });
 //session storage load student data
 // JSON-JAVSCRIPT OBJECT NOTATION
     // KEY AND VALUES
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 function loadStudents()
 {
     studentList.innerHTML="";
-    const students=JSON.parse(sessionStorage.getItem("students"))
+    const students=JSON.parse(sessionStorage.getItem("students"))||[];
     students.forEach((student,index)=>
     {
         const row=document.createElement("tr");
@@ -108,11 +108,16 @@ studenForm.addEventListener("submit",(e)=>
         rollno:rollno.value,
         department:department.value,
         cgpa:cgpa.value,gender
-    }
-    if(studentIndex.value=="")
+    };
+    if(studentIndex.value==="")
     {
         
         students.push(student);
+    }
+    else
+    {
+        students[studentIndex.value]=student;
+        studentIndex.value="";  
     }
     sessionStorage.setItem("students",JSON.stringify(students));
     studenForm.reset();
