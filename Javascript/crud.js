@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const department=document.getElementById("department");
     const cgpa=document.getElementById("cgpa");
     const gender=document.getElementById("gender")
+    const studentIndex=document.getElementById("studentIndex"); 
     
     function checkLogin()
     {
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         {
             loginSection.style.display="none";
             crudSection.style.display="block";
+            
             loadStudents();
         }
         else{
@@ -29,7 +31,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
     //LoginForm
 
-    loginForm.addEventListener("submit",()=>{
+    loginForm.addEventListener("submit",(e)=>{
+        e.preventDefault();
         const username=document.getElementById("username").value;
         const password=document.getElementById("password").value;
         if(username=="Annamalai" && password=="123")
@@ -82,17 +85,58 @@ function loadStudents()
         <td>${student.cgpa}</td>
         <td>${student.gender}</td> 
         <td>
-            <button class="btn btn-info" onclick="editSudent(${index})">EDIT</button
-            <button class='btn-btn-danger'onclick="deleteStudent(${index})">DELETE</button>
+            <button class="btn btn-info " onclick="editSudent(${index})">EDIT</button
+            <button class="btn btn-danger" onclick="deleteStudent(${index})">DELETE</button>
 
         </td>
         `;
         studentList.appendChild(row);
 
-    })
+    });
+
 
 }
+//add student
+studenForm.addEventListener("submit",(e)=>
+{
+    e.preventDefault();
+
+    const students=JSON.parse(sessionStorage.getItem("students")) || [];
+    const gender=document.querySelector('input[name="gender"]:checked').value;// edit button 
+    const student={
+        name:studentName.value,
+        rollno:rollno.value,
+        department:department.value,
+        cgpa:cgpa.value,gender
+    }
+    if(studentIndex.value=="")
+    {
+        
+        students.push(student);
+    }
+    sessionStorage.setItem("students",JSON.stringify(students));
+    studenForm.reset();
+    loadStudents();
+
+
+});
+//Update student data:  
+window.editstudent=(index)=>
+{
+    const students=JSON.parse(sessionStorage.getItem("students"));
+    const student=students[index];
+    studentName.value=student,name;
+    rollno.value=student.rollno;
+    department.value=student.department;
+    cgpa.value=student.cgpa;
+    studentIndex.value=index;
+
+    
+};
+checkLogin();
 
 
 
-})
+
+
+});

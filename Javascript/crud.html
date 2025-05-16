@@ -25,13 +25,13 @@
              <button type="submit" class="btn btn-primary w-100">Login</button>  
         </form>
     </div>
-    <div class="container mt-5" id="crudSection">
+    <div class="container mt-5" id="crudSection" style="display:none;">
         <h2 class="text-center">STUDENT DATA</h2>
         <button id ="logoutBtn" class="btn btn-info mb-3">Logout</button>
-    </div>
+    
 
     <form id="studentForm">
-        <input type="hidden" id="name"/>
+        <input type="hidden" id="studentIndex"/>
         <div class="mb-3">
             <label for="studentname" class="form-label">Student Name</label>
             <input type="text" class="form-control" id="studentname"/>
@@ -81,7 +81,8 @@
         </thead>
         <tbody id="studentList"></tbody>
     </table>    
-</div>
+    </div>
+
 <script src="crud.js"></script>
 
 
