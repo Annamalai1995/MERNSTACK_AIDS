@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       studentForm.reset();
       loadStudents();
     });
+
   
     //Update Student data:
     window.editStudent = (index) => {
@@ -101,6 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
       department.value = student.department;
       cgpa.value = student.cgpa;
       studentIndex.value = index;
+    };
+    //Remove Element
+    window.deleteStudent=(index)=>{
+      const student=JSON.parse(sessionStorage.getItem("students"));
+      student.splice(index,1); //slice remove the element in an array start and end Ex:Dinesh-start D ending-s-Dines
+      sessionStorage.setItem("students",JSON.stringify("students"));
+      loadStudents();
+
     };
   
     
